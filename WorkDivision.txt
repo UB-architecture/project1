@@ -1,0 +1,13 @@
+Subject to change
+
+Daulton
+• Instruction Memory
+• ALU
+• Program Counter
+• Multiplexers
+
+Emir
+• Data Memory
+• Register File
+• Sign Extension
+• Control Unit
