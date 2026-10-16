@@ -22,11 +22,11 @@
 
 // ADDS TWO 1 BIT VALUES w/ CARRY
 module adder_1(
+    output s,
+    output cout,
     input a,
     input b,
-    input cin,
-    output s,
-    output cout
+    input cin
     );
     wire w0, w1, w2, w3;
     xor `DELAY

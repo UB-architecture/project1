@@ -21,13 +21,13 @@
 
 
 module adder_8(
+    output [7:0] s,
+    output cout,
     input [7:0] a,
     input [7:0] b,
-    input cin,
-    output [7:0] s,
-    output cout
+    input cin
     );
     wire w01;
-    adder_4(a[0:3], b[0:3], cin, s[0:3], w01);
-    adder_4(a[4:7], b[4:7], w01, s[4:7], cout);
+    adder_4(s[0:3], w01, a[0:3], b[0:3], cin);
+    adder_4(s[4:7], cout, a[4:7], b[4:7], w01);
 endmodule
