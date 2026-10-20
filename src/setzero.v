@@ -1,8 +1,8 @@
 `timescale 1ns / 1ps
 
 module setzero(
-    input [15:0] a,
-    output z
+    output z,
+    input [15:0] a
     );
     wire w0, w1, w2, w3, w4, w5, w6, w7;
     wire w8, w9, w10, w11, w12, w13, w14;
