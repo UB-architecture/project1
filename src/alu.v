@@ -1,38 +1,32 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 10/14/2026 03:00:19 PM
-// Design Name: 
-// Module Name: alu
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module alu(
     input [15:0] a,
     input [15:0] b,
     input [4:0] op,
-    output [15:0] r
+    input [1:0] aluop,
+    output [15:0] r,
+    output z
     );
-    wire w0, w1, w2, w3;
+    wire w0, w1;
+    wire wr;
     
-    // Create negative b
-    not
-        not1(w0, b);
-    adder_16(w1, 0, w0, 1, 0);
-    adder_16(w2, 0, w1, a, 0); // a - b
+    // ADD/SUB
+    not(w0, b);    
+    mux16_2_1(w1, w0, a, aluop[0]);
+    adder_16(wr, 0, w1, a, aluop[0]);
+    setzero(z, wr);
     
-    adder_16(w3, 0, a, b, 0); // a + b
+    // AND
+    and(w2, a, b);
+    
+    // SLL
+    shift_left(w3, a, b);
+    
+    // Select AND or SLL
+    mux16_2_1(w4, w3, w2, op[0]);
+    
+    // Select ADDER or LOGIC as output
+    mux16_2_1(r, wr, w4, op[1]);
+    
 endmodule
