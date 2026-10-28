@@ -24,5 +24,5 @@ module setzero(
         or89(w12, w8, w9),
         orXI(w13, w10, w11);
      or
-        or_out(z, or89, orXI);
+        or_out(z, w12, w13);
 endmodule

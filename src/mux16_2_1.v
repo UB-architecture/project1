@@ -9,8 +9,8 @@ module mux16_2_1(
     input [15:0] b,
     input sel
     );
-    mux4_2_1(out[3:0],   a[3:0],   b[3:0],   sel);
-    mux4_2_1(out[4:7],   a[4:7],   b[4:7],   sel);
-    mux4_2_1(out[8:11],  a[8:11],  b[8:11],  sel);
-    mux4_2_1(out[12:15], a[12:15], b[12:15], sel);
+    mux4_2_1 aa(out[3:0],   a[3:0],   b[3:0],   sel);
+    mux4_2_1 bb(out[7:4],   a[7:4],   b[7:4],   sel);
+    mux4_2_1 cc(out[11:8],  a[11:8],  b[11:8],  sel);
+    mux4_2_1 dd(out[15:12], a[15:12], b[15:12], sel);
 endmodule

@@ -28,6 +28,6 @@ module adder_16(
     input cin
     );
     wire w01;
-    adder_8(s[0:7], w01, a[0:7], b[0:7], cin);
-    adder_8(s[8:15], cout, a[8:15], b[8:15], w01);
+    adder_8 aa(s[7:0], w01, a[7:0], b[7:0], cin);
+    adder_8 bb(s[15:8], cout, a[15:8], b[15:8], w01);
 endmodule

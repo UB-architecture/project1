@@ -26,8 +26,8 @@ module mux4_2_1(
     input [3:0] b,
     input sel
     );
-    mux2(out[0], a[0], b[0], sel);
-    mux2(out[1], a[1], b[1], sel);
-    mux2(out[2], a[2], b[2], sel);
-    mux2(out[3], a[3], b[3], sel);
+    mux2 aa(out[0], a[0], b[0], sel);
+    mux2 bb(out[1], a[1], b[1], sel);
+    mux2 cc(out[2], a[2], b[2], sel);
+    mux2 dd(out[3], a[3], b[3], sel);
 endmodule

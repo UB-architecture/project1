@@ -1,5 +1,4 @@
 `timescale 1ns / 1ps
-`define DELAY #0
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -28,11 +27,11 @@ module mux2(
     input sel
     );
     wire w0, w1, w2;
-    not `DELAY
+    not
         not1(w0, sel);
-    and `DELAY
+    and
         and1(w1, w0, a),
         and2(w2, sel, b);
-    or `DELAY
+    or
         or1(out, w1, w2);
 endmodule

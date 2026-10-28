@@ -24,5 +24,5 @@ module add_4(
     output [15:0] out,
     input [15:0] in
     );
-    adder_16(out, 0, in, 4, 0);
+    adder_16 aa(out, 0, in, 4, 0);
 endmodule

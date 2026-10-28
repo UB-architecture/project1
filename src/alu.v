@@ -1,32 +1,27 @@
 `timescale 1ns / 1ps
 
 module alu(
+    output [15:0] r,
+    output z,
     input [15:0] a,
     input [15:0] b,
-    input [4:0] op,
-    input [1:0] aluop,
-    output [15:0] r,
-    output z
+    input [1:0] op // ALUop
     );
-    wire w0, w1;
-    wire wr;
+    wire [15:0] w0, w1, w2, w3, w4;
+    wire [15:0] wr, wx;
     
-    // ADD/SUB
-    not(w0, b);    
-    mux16_2_1(w1, w0, a, aluop[0]);
-    adder_16(wr, 0, w1, a, aluop[0]);
-    setzero(z, wr);
+    not16 g0(w0, b);
+    mux16_2_1 g1(w1, b, w0, op[0]);
+    adder_16 g2(wr, wx, a, w1, op[0]);
+    setzero g3(z, wr);
     
-    // AND
-    and(w2, a, b);
+    // and
+    and16 g4(w2, a, b);
     
-    // SLL
-    shift_left(w3, a, b);
+    // shift
+    shift_left g5(w3, a, b);
     
-    // Select AND or SLL
-    mux16_2_1(w4, w3, w2, op[0]);
-    
-    // Select ADDER or LOGIC as output
-    mux16_2_1(r, wr, w4, op[1]);
-    
+    // sel
+    mux16_2_1 g6(w4, w3, w2, op[0]);
+    mux16_2_1 g7(r, wr, w4, op[1]);
 endmodule
