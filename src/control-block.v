@@ -33,7 +33,7 @@
 
 //Takes in bits 15:12 (opcode) and 3:0 (func code for R-type) of instruction and generates control signals 
 module control_block(
-    output reg RegW, MemR, MemW, UseIm, UseM,
+    output reg RegW, MemR, MemW, UseIm, UseM, J, B, BEQ,
     output reg[1:0] ALUOp,
     input [3:0] opcode,
     input [3:0] funccode
@@ -49,6 +49,9 @@ module control_block(
         UseIm = 0;
         UseM = 0;
         ALUOp = funccode[1:0];
+        B = 0;
+        BEQ = 0;
+        J = 0;
     end
     4'b0001: begin //Load Word
         RegW = 1;
@@ -57,6 +60,9 @@ module control_block(
         UseIm = 1;
         UseM = 1;
         ALUOp = 2'b00;
+        BEQ = 0;
+        B = 0;
+        J = 0;
     end
     4'b0010: begin //Store Word
         RegW = 0;
@@ -65,6 +71,9 @@ module control_block(
         UseIm = 1;
         UseM = 0;
         ALUOp = 2'b00;
+        BEQ = 0;
+        B = 0;
+        J = 0;
     end
     4'b0011: begin //Add Imm
         RegW = 1;
@@ -73,6 +82,9 @@ module control_block(
         UseIm = 1;
         UseM = 0;
         ALUOp = 2'b00;
+        BEQ = 0;
+        B = 0;
+        J = 0;
     end
     4'b0100: begin //BEQ
         RegW = 0;
@@ -81,6 +93,9 @@ module control_block(
         UseIm = 0;
         UseM = 0;
         ALUOp = 2'b01; //subtract, other logic handled in top right of datapath
+        BEQ = 1;
+        B = 1;
+        J = 0;
     end
     4'b0101: begin //BNE
         RegW = 0;
@@ -89,6 +104,9 @@ module control_block(
         UseIm = 0;
         UseM = 0;
         ALUOp = 2'b01; //subtract, other logic handled in top right of datapath
+        BEQ = 0;
+        B = 1;
+        J = 0;
     end
     4'b0110: begin //Jump, nothing ALU matters
         RegW = 0;
@@ -97,6 +115,9 @@ module control_block(
         UseIm = 0;
         UseM = 0;
         ALUOp = 2'b00;
+        BEQ = 0;
+        B = 0;
+        J = 1;
     end
     default: begin // Unreachable
         RegW = 0;
@@ -105,6 +126,9 @@ module control_block(
         UseIm = 0;
         UseM = 0;
         ALUOp = 2'b00;
+        BEQ = 0;
+        B = 0;
+        J = 0;
     end
     endcase
     end

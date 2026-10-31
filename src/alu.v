@@ -3,23 +3,23 @@
 module alu(
     output [15:0] r,
     output z,
-    input [15:0] a,
-    input [15:0] b,
+    input [15:0] rs, // a
+    input [15:0] rt, // b
     input [1:0] op // ALUop
     );
     wire [15:0] w0, w1, w2, w3, w4;
     wire [15:0] wr, wx;
     
-    not16 g0(w0, b);
-    mux16_2_1 g1(w1, b, w0, op[0]);
-    adder_16 g2(wr, wx, a, w1, op[0]);
+    not16 g0(w0, rt);
+    mux16_2_1 g1(w1, rt, w0, op[0]);
+    adder_16 g2(wr, wx, rs, w1, op[0]);
     setzero g3(z, wr);
     
     // and
-    and16 g4(w2, a, b);
+    and16 g4(w2, rs, rt);
     
     // shift
-    shift_left g5(w3, a, b);
+    shift_left g5(w3, rt, rs);
     
     // sel
     mux16_2_1 g6(w4, w3, w2, op[0]);

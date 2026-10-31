@@ -5,7 +5,7 @@ module dmux2_4(
     output b,
     output c,
     output d,
-    input {1:0] sel
+    input [1:0] sel
     );
     wire wX0, wX1, w0X, w1X;
     dmux2
