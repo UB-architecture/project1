@@ -21,16 +21,16 @@
 
 
 module register_file(
-        output wire[15:0] ReadRegData1, ReadRegData2,
-        input wire[3:0] ReadReg1, ReadReg2, WriteReg,
+        output wire[15:0] data_rt, data_rs,
+        input wire[3:0] rt, rs, WriteReg,
         input wire[15:0] WriteData,
         input wire RegW, //whether or not to write to WriteReg
         input clock
     );
     reg [15:0] registers [0:15];
     
-    assign ReadRegData1 = registers[ReadReg1];
-    assign ReadRegData2 = registers[ReadReg2];
+    assign data_rt = registers[rt];
+    assign data_rs = registers[rs];
     
     always @(negedge clock) begin
         if (RegW == 1) begin

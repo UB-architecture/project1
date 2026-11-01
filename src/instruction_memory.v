@@ -30,7 +30,7 @@ module instruction_memory(
     //potentially fill out the memory with instructions here
     initial begin
         memory[0] = 8'hFF; // Dummy first instruction
-        memory[1] = 8'hAF;
+        memory[1] = 8'hAA;
         
         memory[2] = 8'h00; // ADD r0 + r1 ( 1 + 2 )
         memory[3] = 8'h10; // r0 = 3
@@ -45,13 +45,13 @@ module instruction_memory(
         memory[9] = 8'hA0; // 6
         
         memory[10]=8'h3A;
-        memory[11]=8'h01;
+        memory[11]=8'hA1;
         
         memory[12]=8'h5A;
         memory[13]=8'h8E;
         
-        memory[14]=8'h03;
-        memory[15]=8'h10;
+        memory[14]=8'h02;
+        memory[15]=8'h12;
     end
     
     

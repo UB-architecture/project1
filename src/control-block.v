@@ -93,7 +93,7 @@ module control_block(
         UseIm = 0;
         UseM = 0;
         ALUOp = 2'b01; //subtract, other logic handled in top right of datapath
-        BEQ = 1;
+        BEQ = 0;
         B = 1;
         J = 0;
     end
@@ -104,7 +104,7 @@ module control_block(
         UseIm = 0;
         UseM = 0;
         ALUOp = 2'b01; //subtract, other logic handled in top right of datapath
-        BEQ = 0;
+        BEQ = 1;
         B = 1;
         J = 0;
     end

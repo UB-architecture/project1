@@ -3,8 +3,8 @@
 module alu(
     output [15:0] r,
     output z,
-    input [15:0] rs, // a
-    input [15:0] rt, // b
+    input [15:0] rt, // a
+    input [15:0] rs, // b
     input [1:0] op // ALUop
     );
     wire [15:0] w0, w1, w2, w3, w4;

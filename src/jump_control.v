@@ -13,7 +13,7 @@ module jump_control(
     assign offset_shifted = offset << 1;
     
     adder_16 g0(w0, wx, pc, 16'h0002, 0);  // add 2 for non jump
-    adder_16 g1(w1, wxx, w0, offset2, 0);   // add 2 for non jump
+    adder_16 g1(w1, wxx, w0, offset_shifted, 0);   // add 2 for non jump
 
     xor g2(w2, z, beq);
     not g3(w3, w2);
@@ -22,10 +22,4 @@ module jump_control(
     or g5(w5, w4, j);
     
     mux16_2_1 g6(out, w0, w1, w5);
-    
-//    not g2(w2, z);
-//    and g3(w3, w2, beq);
-//    or g4(w4, j, w3);
-    
-//    mux16_2_1 g5(out, w0, w1, w4);
 endmodule

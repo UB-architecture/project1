@@ -11,15 +11,16 @@ module board_top(
     output [6:0] seg      // 7-segment cathodes 
 );
 
+    
     wire [15:0] cpu_pc;
     wire [15:0] cpu_inst;
     wire [15:0] cpu_alu;
     
     wire step_clk;
 
-    cpu my_cpu(  //Modify this to fit your specific CPU module 
+    cpu my_cpu (  //Modify this to fit your specific CPU module 
         .clock(step_clk),   
-        .reset(btnU),
+        .reset(btnU),     
         .pc_out(cpu_pc),
         .w_ins(cpu_inst),
         .w_alu(cpu_alu)
@@ -27,7 +28,6 @@ module board_top(
 
     // If sw[0] is UP, show PC. If DOWN, show ALU out
     assign led = sw[0] ? cpu_pc : cpu_alu;
-    assign led[15] = step_clk;
 
     //button debouncer to allow one press to always step only one cycle
     
@@ -37,20 +37,19 @@ module board_top(
     
     always @(posedge clk) begin
         // synchronize button to 100MHz clock
-        btn_sync_0 = btnC;
-        btn_sync_1 = btn_sync_0;
-        btn_prev   = btn_state;
+        btn_sync_0 <= btnC;
+        btn_sync_1 <= btn_sync_0;
+        btn_prev   <= btn_state;
         
-        btn_state = 1;
         // debounce counter
-//        if (btn_sync_1 == btn_state) begin
-//            debounce_counter = 0;
-//        end else begin
-//            debounce_counter = debounce_counter + 1;
-//            if (debounce_counter == 16'hFFFF) begin
-//                btn_state = btn_sync_1;
-//            end
-//        end
+        if (btn_sync_1 == btn_state) begin
+            debounce_counter <= 0;
+        end else begin
+            debounce_counter <= debounce_counter + 1;
+            if (debounce_counter == 16'hFFFF) begin
+                btn_state <= btn_sync_1;
+            end
+        end
     end
     
     // generate a single pulse that lasts for exactly one 100MHz clock cycle
@@ -63,7 +62,7 @@ module board_top(
     reg [3:0] hex_digit;
     
     always @(posedge clk) begin
-        refresh_counter = refresh_counter + 1;
+        refresh_counter <= refresh_counter + 1;
     end
     
     // select which of the 4 hex digits from the instruction to display

@@ -42,9 +42,9 @@ module test_cpu();
         w_ins[15:12], w_ins[3:0]
         );
     
-    wire [15:0] w_d1, w_d2;
+    wire [15:0] w_drt, w_drs;
     register_file rf(
-        w_d1, w_d2,
+        w_drt, w_drs,
         w_ins[11:8], w_ins[7:4], w_ins[11:8],
         w_wd,
         w_regw,
@@ -54,14 +54,14 @@ module test_cpu();
     wire [15:0] w_se;
     sign_extend_4_to_16 se(w_se, w_ins[3:0]);
     
-    wire [15:0] w_d2r;
-    mux16_2_1 mux0(w_d2r, w_d2, w_se, w_useim);
+    wire [15:0] w_d_rt_or_c;
+    mux16_2_1 mux0(w_d_rt_or_c, w_drt, w_se, w_useim);
     
     wire w_z;
-    alu alu0(w_alu, w_z, w_d1, w_d2r, w_aluop);
+    alu alu0(w_alu, w_z, w_d_rt_or_c, w_drs, w_aluop);
     
     wire [15:0] w_dm;
-    data_memory dm(w_dm, w_alu, w_d2, w_memw, clock);
+    data_memory dm(w_dm, w_alu, w_drt, w_memw, clock);
     
     jump_control jc(pc_in, pc_out, w_se, w_z, w_j, w_b, w_beq);
     
