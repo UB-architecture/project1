@@ -52,6 +52,7 @@ module instruction_memory(
         
         memory[14]=8'h02;
         memory[15]=8'h12;
+        
     end
     
     

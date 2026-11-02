@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module cpu(
-      inout [15:0] w_alu, pc_out, w_ins,
+      output [15:0] w_alu, pc_out, w_ins,
       input clock, reset
     );
     

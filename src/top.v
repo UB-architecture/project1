@@ -11,7 +11,6 @@ module board_top(
     output [6:0] seg      // 7-segment cathodes 
 );
 
-    
     wire [15:0] cpu_pc;
     wire [15:0] cpu_inst;
     wire [15:0] cpu_alu;

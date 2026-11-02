@@ -27,6 +27,7 @@ module test_lsl();
     shift_left poop(out[15:0], a, shamt);
     
     initial begin
+    $monitor("a=%h, shift=%h, out=%h", a, shamt, out);
     a = 9;shamt = 0; #100;
     shamt = 1; #100;
     shamt = 14; #100;

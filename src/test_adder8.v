@@ -28,6 +28,7 @@ module test_adder8();
     adder_8 poop(s, cout, a, b, cin);
     
     initial begin
+    $monitor("a=%h, b=%h, cin=%b, out=%h, carry=%b", a,b,cin,s,cout);
     #0 a=8'h02;b=8'h02;cin=0;
     #100 a=8'h10;b=8'h10;
     #100 a=8'h18;b=8'h08;

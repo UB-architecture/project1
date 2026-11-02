@@ -31,6 +31,7 @@ module test_mux2(
     mux16_2_1 poop(out, a, b, sel);
     setzero poopy(z, a);
     initial begin
+        $monitor("a=%h, b=%h, sel=%b, out=%h", a, b, sel, out);
         a=0;b=0;sel=0; #100;
         a = 15; #100;
         a = 16'hFFFF; #100;

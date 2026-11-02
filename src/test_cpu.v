@@ -1,24 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 10/31/2026 12:52:06 PM
-// Design Name: 
-// Module Name: test_cpu
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module test_cpu();
     
@@ -69,6 +49,7 @@ module test_cpu();
     
     integer i;
     initial begin
+        $monitor("PC=%h\n\tALUOut=%h\n\tPCOut=%h",pc_out,w_alu,pc_in);
         reset = 0; clock = 0; #40;
         for (i = 0; i < 60; i = i + 1) begin
             clock = clock ^ 1; #20;

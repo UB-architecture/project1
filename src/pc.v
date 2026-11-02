@@ -9,10 +9,12 @@ module pc(
     initial begin
         out_adr = 16'h0000;
     end
-    always @(reset) begin
-        out_adr = 16'h0000;
-    end
     always @(posedge clock) begin
-        out_adr = in_adr;
+        if(reset) begin
+            out_adr = 16'h0000;
+        end
+        else begin
+            out_adr = in_adr;
+        end
     end
 endmodule

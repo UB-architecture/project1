@@ -34,6 +34,7 @@ module test_alu();
     // 10 = shift left
     // 11 = and
     initial begin
+        $monitor("a=%h, b=%h, out=%h, op=%b", a, b, out, op);
         // ADD
         a = 0; b = 1; op = 0; #100;
         a = 1; b = 1; #100;

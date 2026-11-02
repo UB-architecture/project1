@@ -5,9 +5,10 @@ module test_jumpc();
     reg z, j, beq;
     wire [15:0] out;
     
-    jump_control gat(out, adr, offset, z, beq, j);
+    jump_control gat(out, adr, offset, z, j, 1, beq);
     
     initial begin
+        $monitor("adr=%h, offset=%h, z=%b, j=%b, beq=%b, out=%h", adr, offset, z, j, beq, out);
         adr = 16'h1000; offset = 25; z = 0; beq = 0; j = 0; #100;
         // BEQ not taken
         beq = 1; z = 1; #100;
