@@ -32,7 +32,7 @@ module test_cpu();
     );
     
     wire [15:0] w_se;
-    sign_extend_4_to_16 se(w_se, w_ins[3:0]);
+    sign_extend_4_to_16 se(w_se, w_ins, w_j);
     
     wire [15:0] w_d_rt_or_c;
     mux16_2_1 mux0(w_d_rt_or_c, w_drt, w_se, w_useim);
